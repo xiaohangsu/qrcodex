@@ -1,0 +1,16 @@
+.sass-cache/
+bower_components/
+node_modules/
+
+.grunt
+
+Thumbs.db
+.DS_Store
+
+!.gitkeep
+
+.rbenv-version
+.rvmrc
+
+logs
+*.log
