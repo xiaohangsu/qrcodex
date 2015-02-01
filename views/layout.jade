@@ -2,6 +2,20 @@ doctype html
 html
   head
     title= title
+    meta(charset="utf-8")
+    meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
+    link(rel='stylesheet', href='/lib/materialize/css/materialize.min.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
-    block content
+    .navbar-fixed
+      nav
+        .nav-wrapper
+          .col.s12
+            .left.side-nav
+              i.small.mdi-action-list
+            .right.side-nav
+              i.small.mdi-action-perm-identity
+    #content
+      block content
+    script(src="/lib/jqueryM-1.4.5.js")
+    script(src="/lib/materialize/js/materialize.min.js")
