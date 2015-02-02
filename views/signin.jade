@@ -1,0 +1,12 @@
+extends layout
+
+block content
+    form
+      div.input-field
+        i.small.mdi-hardware-phone-android.prefix
+        input.validate#signin_phone(type='text' name='signin_phone')
+        label(for='signin_phone') 手机号码
+      div.input-field
+        i.small.mdi-content-mail.prefix
+        input.validate#signin_verify_code(type='text' name='signin_verify_code')
+        label(for='signin_verify_code') 验证码
