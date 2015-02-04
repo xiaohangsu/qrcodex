@@ -1,0 +1,31 @@
+extends layout
+
+block content
+  div.flash_tips
+    -if(success)
+      div.flash_tips_success = success
+    -if(error)
+      div.flash_tips_error = error
+
+  form#signup_form(method='post')
+    div.input-field
+      i.small.mdi-social-person.prefix
+      input(type='text' name='signup_username' placeholder='姓名')
+    div.input-field
+      i.small.mdi-social-school.prefix
+      input(type='text' name='signup_school' placeholder='学校')
+    div.input-field
+      i.small.mdi-image-looks-one.prefix
+      input(type='text' name='signup_class' placeholder='班级')
+    div.input-field
+      i.small.mdi-action-face-unlock.prefix
+      input(type='text' name='signup_studentID' placeholder='学号')
+    div.input-field
+      i.small.mdi-hardware-phone-android.prefix
+      input(type='text' name='signup_phone_number' placeholder='手机号码')
+    
+    div.row#signup_btns
+      div.col.s6
+        button(type='submit')#signup_btn.btn-large.waves-effect.waves-light 注册
+      div.col.s6
+        span.go_back.btn-large.waves-effect.waves-light 返回

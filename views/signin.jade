@@ -1,12 +1,16 @@
 extends layout
 
 block content
-    form
+    form#sigin_form(method='post')
       div.input-field
         i.small.mdi-hardware-phone-android.prefix
-        input.validate#signin_phone(type='text' name='signin_phone')
-        label(for='signin_phone') 手机号码
+        input(type='text' name='signin_phone' placeholder='手机号码')
       div.input-field
         i.small.mdi-content-mail.prefix
-        input.validate#signin_verify_code(type='text' name='signin_verify_code')
-        label(for='signin_verify_code') 验证码
+        input(type='text' name='signin_verify_code' placeholder='验证码')
+      span#get_verify_code.btn.waves-effect.waves-light 获取验证码
+      div.row#signin_btns
+        div.col.s6
+          button(type='submit')#signin_btn.btn-large.waves-effect.waves-light 登陆
+        div.col.s6
+          span.go_back.btn-large.waves-effect.waves-light 返回
