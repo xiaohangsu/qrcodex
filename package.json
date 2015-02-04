@@ -13,10 +13,8 @@
     "jade": "~1.9.1",
     "morgan": "~1.5.1",
     "serve-favicon": "~2.2.0",
-    "grunt": "~0.4.1",
-    "grunt-contrib-jshint": "~0.6.0",
-    "grunt-contrib-nodeunit": "~0.2.0",
-    "grunt-contrib-uglify": "~0.2.2",
+    "connect-flash": "latest",
+    "express-session": "latest",
     "avoscloud-sdk":"latest"
   },
   "devDependencies": {
@@ -27,6 +25,7 @@
     "grunt-contrib-less": "~0.11.1",
     "grunt-contrib-uglify": "~0.4.0",
     "grunt-contrib-watch": "~0.6.1",
-    "grunt-express-server": "^0.4.17"
+    "grunt-express-server": "^0.4.17",
+    "grunt-contrib-nodeunit": "~0.2.0"
   }
 }
