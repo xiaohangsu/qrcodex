@@ -1,0 +1,13 @@
+extends admin_layout
+
+block content
+  #admin-login-form.container
+    #title-login-container.valign-wrapper
+      h1 试卷管理系统登陆
+    form.col.s12(action='/admin/login' method='post')
+      #input-name
+        input(type='text' name='admin_name' placeholder='账号')
+      #input-password
+         input(type='password' name='admin_password' placeholder='密码')
+      #input-submit.valign-wrapper
+         button.btn-large.wave-effect(type='submit' value='Submit') 登陆

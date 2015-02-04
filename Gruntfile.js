@@ -3,7 +3,7 @@ module.exports = function(grunt) {
 	grunt.initConfig({
 		//清理css与js文件
 		clean: {
-			stylesheets: ['public/stylesheets/*.css'],
+			stylesheets: ['public/stylesheets/*.css', '!public/stylesheets/admin.css'],
 			javascript: ['public/javascripts/build.min.js', 'public/javascript/build.js']
 		},
 		//合并css文件生成style.css
