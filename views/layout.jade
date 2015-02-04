@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title QRCODEX - #{title}
+    title QRCODEX | #{title}
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
     link(rel='stylesheet', href='/lib/materialize/css/materialize.min.css')
@@ -13,6 +13,7 @@ html
           .col.s12
             .left.side-nav
               i.small.mdi-action-list
+            span#layout_title #{title}
             -if (user)
               a.right.side-nav.button-collapse(data-activates='userInfo')
                 i.small.mdi-action-perm-identity
@@ -20,6 +21,11 @@ html
               a.right.side-nav.button-collapse(data-activates='userSignup')
                 i.small.mdi-action-perm-identity
             
+    div.flash_tips
+      -if(success)
+        div.flash_tips_success = success
+      -if(error)
+        div.flash_tips_error = error
 
     ul.side-nav.full.grey.darken-3#userSignup
       li

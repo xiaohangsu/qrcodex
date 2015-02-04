@@ -4,7 +4,10 @@ var favicon = require('serve-favicon');
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+var session = require('express-session');
+var flash = require('connect-flash');
 var app = express();
+var config = require('./config');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -14,12 +17,26 @@ app.set('view engine', 'jade');
 //app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
-app.use(cookieParser());
+app.use(bodyParser.urlencoded({
+    extended: false
+}));
+app.use(cookieParser('qrcodex'));
+app.use(session({
+    secret: config.cookie_secret,
+    key: config.cookie_key, //cookie name
+    resave: false,
+    saveUninitialized: true,
+    cookie: {
+        secure: true,
+        maxAge: 1000 * 60 * 60 * 24
+    } //1 day
+}));
+app.use(flash());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/index'));
 app.use('/signin', require('./routes/signin'));
+app.use('/signup', require('./routes/signup'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

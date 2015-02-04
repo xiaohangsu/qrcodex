@@ -14,6 +14,9 @@ a {
 #content {
   margin: 0 5px 0 5px;
 }
+#layout_title {
+  margin-left: 25px;
+}
 #userSignup {
   color: white;
   overflow: auto;
@@ -53,4 +56,30 @@ a {
 #userInfo li i {
   margin-right: 50px;
   float: left;
+}
+
+#sigin_form {
+  padding: 10px;
+}
+#get_verify_code {
+  margin-left: 41px;
+}
+#signin_btn {
+  width: 100%;
+}
+.go_back {
+  width: 100%;
+}
+#signin_btns {
+  margin-top: 100px;
+}
+
+#signup_form {
+  padding: 10px !important;
+}
+#signup_btn {
+  width: 100%;
+}
+#signup_btns {
+  margin-top: 20px;
 }
