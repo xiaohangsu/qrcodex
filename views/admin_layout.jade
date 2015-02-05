@@ -5,6 +5,11 @@ html
     link(rel='stylesheet', href='/lib/materialize/css/materialize.min.css')
     link(rel='stylesheet', href='/stylesheets/admin.css')
   body
+    div.flash_tips
+      -if(success)
+        div.flash_tips_success = success
+      -if(error)
+        div.flash_tips_error = error
     block content
     script(src="/lib/jquery-1.11.2.js")
     script(src="/lib/materialize/js/materialize.min.js")
