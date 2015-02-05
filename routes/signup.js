@@ -47,7 +47,7 @@ router.post('/', function(req, res, next) {
       console.log('==================');
       return res.redirect('/signup');
     } else {
-      req.flash('error', '注册失败');
+      req.flash('error', '服务器发生错误, 请稍后再试');
       console.log('========================');
       console.log('注册失败: ' + result.error);
       console.log('========================');

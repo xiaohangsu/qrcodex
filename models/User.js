@@ -21,7 +21,9 @@ User.prototype = {
     }).then(function(user) {
       callback(user);
     }, function(error) {
-      callback({error: error.description});
+      callback({
+        error: error.description
+      });
     });
   },
 
@@ -35,13 +37,17 @@ User.prototype = {
     query.first({
       success: function(user) {
         if (user) {
-          callback({error: 'user existed'});
+          callback({
+            error: 'user existed'
+          });
         } else {
           self.addNewUser(username, school, studentClass, studentID, phoneNumber, callback);
         }
       },
       error: function(error) {
-        callback({error: error.description});
+        callback({
+          error: error.description
+        });
       }
     });
   },
@@ -50,7 +56,34 @@ User.prototype = {
    * Sign in a user
    **/
   signIn: function(phoneNumber, verifyCode, callback) {
-
+    var self = this;
+    var query = new AV.Query(QRUser);
+    query.equalTo('phoneNumber', phoneNumber);
+    query.first({
+      success: function(user) {
+        if (!user) {
+          callback({
+            error: 'user does not exist'
+          });
+        } else {
+          AV.Cloud.verifySmsCode(verifyCode).then(function() {
+            callback({
+              user: user,
+              success: 'success'
+            });
+          }, function(error) {
+            callback({
+              error: 'verify code does not correct'
+            });
+          });
+        }
+      },
+      error: function(error) {
+        callback({
+          error: error.description
+        });
+      }
+    });
   }
 };
 

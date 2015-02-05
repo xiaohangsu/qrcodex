@@ -1,16 +1,4 @@
 (function() {
-  //右侧栏弹出用户菜单
-  $('.button-collapse').sideNav({
-    edge: 'right'
-  });
-
-  //flash提示动画
-  if ($('.flash_tips').children().length > 0) {
-    $('*').click(function() {
-      $('.flash_tips').removeClass().addClass('flash_tips_animate');
-    });
-  }
-})();;(function() {
   var counter = 61;
   //倒计时1分钟可以重新发送获取验证码短信
   function countDown() {

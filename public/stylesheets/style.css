@@ -13,7 +13,6 @@ a {
 }
 .flash_tips {
   width: 100%;
-  font-size: 17px;
   text-align: center;
   position: fixed;
   z-index: -1;
@@ -64,12 +63,29 @@ a {
 #userInfo li {
   border-bottom: 1px solid grey;
 }
-#userInfo li p {
+#userInfo li a {
+  color: white;
   font-size: 18px;
 }
 #userInfo li i {
   margin-right: 50px;
   float: left;
+}
+.flash_tips_animate {
+  width: 100%;
+  text-align: center;
+  position: fixed;
+  z-index: -1;
+  transition: transform 1s;
+  transform: translate(0px, -40px);
+  -o-transition: -o-transform 1s;
+  -o-transform: translate(0px, -40px);
+  -ms-transition: -ms-transform 1s;
+  -ms-transform: translate(0px, -40px);
+  -moz-transition: -moz-transform 1s;
+  -moz-transform: translate(0px, -40px);
+  -webkit-transition: -webkit-transform 1s;
+  -webkit-transform: translate(0px, -40px);
 }
 
 #sigin_form {
