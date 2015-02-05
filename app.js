@@ -14,25 +14,26 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
-//app.use(favicon(__dirname + '/public/favicon.ico'));
+// app.use(favicon(__dirname + '/public/favicon.ico'));
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
 }));
-app.use(cookieParser('qrcodex'));
+
+app.use(cookieParser());
+app.use(express.static(path.join(__dirname, 'public')));
+app.use(flash());
+
 app.use(session({
     secret: config.cookie_secret,
-    key: config.cookie_key, //cookie name
+    key: config.cookie_key,
     resave: false,
-    saveUninitialized: true,
+    saveUninitialized: false,
     cookie: {
-        secure: true,
-        maxAge: 1000 * 60 * 60 * 24
-    } //1 day
+        maxAge: 1000 * 60 * 60 * 24 * 1
+    }//TTL: one day
 }));
-app.use(flash());
-app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', require('./routes/index'));
 app.use('/signin', require('./routes/signin'));

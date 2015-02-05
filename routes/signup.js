@@ -4,9 +4,7 @@ var User = require('../models/User');
 
 /* GET signup page. */
 router.get('/', function(req, res, next) {
-  console.log('GET!!!!!!');
-  console.log(req.flash());
-  if(req.session.user) {
+  if (req.session.user) {
     req.flash('error', '请先登出');
     return res.redirect('/');
   }
@@ -21,12 +19,17 @@ router.get('/', function(req, res, next) {
 
 /* POST signup page */
 router.post('/', function(req, res, next) {
-  req.flash('error', 'test');
   var username = req.body.signup_username,
     school = req.body.signup_school,
     studentClass = req.body.signup_class,
     studentID = req.body.signup_studentID,
     phoneNumber = req.body.signup_phone_number;
+
+  if (username === '' | school === '' | studentClass === '' | studentID === '' | phoneNumber === '') {
+    req.flash('error', '请填写注册所需的完整信息');
+    return res.redirect('/signup');
+  }
+
   var user = new User();
 
   var checkResult = function(result) {
@@ -36,27 +39,23 @@ router.post('/', function(req, res, next) {
       console.log('======');
       console.log('注册成功');
       console.log('======');
-      // return res.redirect('/');
+      return res.redirect('/');
     } else if (result.error == 'user existed') {
       req.flash('error', '该用户已存在');
-      console.log(req.session);
       console.log('==================');
       console.log('注册失败: 该用户已存在');
       console.log('==================');
-      // return res.redirect('/signup');
+      return res.redirect('/signup');
     } else {
       req.flash('error', '注册失败');
       console.log('========================');
       console.log('注册失败: ' + result.error);
       console.log('========================');
-      // return res.redirect('/signup');
-    }  
+      return res.redirect('/signup');
+    }
   };
-  
+
   user.signUp(username, school, studentClass, studentID, phoneNumber, checkResult);
-  console.log('POST!!!!!!');
-  console.log(req.flash());
-  return res.redirect('/signup');
 });
 
 module.exports = router;
