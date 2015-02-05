@@ -3,3 +3,16 @@
   padding: 0;
 }
 
+.flash_tips {
+  width: 60%;
+  font-size: 35px;
+  text-align: center;
+  z-index: -1;
+  margin: 0 auto;
+}
+.flash_tips_success {
+  background-color: rgb(73, 244, 73);
+}
+.flash_tips_error {
+  background-color: rgb(245, 62, 62);
+}

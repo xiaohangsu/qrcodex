@@ -8,8 +8,11 @@ var Hash_Code = '';
 
 /* GET admin-login page. */
 router.get('/login', function(req, res, next) {
+  console.log(req.session);
   res.render('admin_login', {
-    title: 'Admin - Login'
+    title: 'Admin - Login',
+    success : req.flash('success').toString(),
+    error : req.flash('error').toString()
   });
 });
 
@@ -22,7 +25,8 @@ router.post('/login', function(req, res, next) {
       res.redirect('/admin/add' + '/' + Hash_Code);
     },
     error: function(user, error) {
-      res.redirect('/admin/login');
+      req.flash('error', '密码或账号错误');
+      return res.redirect('/admin/login');
     }
   });
 });
@@ -34,6 +38,7 @@ router.get('/add/:hash_code', function(req, res, next) {
       title: 'Admin - Add'
     });
   } else {
+    req.flash('error', '另一用户登陆');
     res.redirect('/admin/login');
   }
 });
