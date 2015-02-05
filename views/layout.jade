@@ -14,53 +14,52 @@ html
             .left.side-nav
               i.small.mdi-action-list
             span#layout_title #{title}
-            -if (user)
+            - if (user)
               a.right.side-nav.button-collapse(data-activates='userInfo')
                 i.small.mdi-action-perm-identity
-            -else
+              ul.side-nav.full.grey.darken-3#userInfo
+                li
+                  div#userImg
+                    img(src='http://tp4.sinaimg.cn/3025484163/180/40035859035/1')
+                li
+                  i.small.mdi-social-person
+                  p#userName #{user.username}
+                li
+                  i.small.mdi-hardware-phone-android
+                  p#userPhone #{user.phoneNumber}
+                li
+                  i.small.mdi-notification-folder-special
+                  p#userFav 我的收藏
+                li
+                  i.small.mdi-action-info
+                  p#aboutUs 关于我们
+                li
+                  i.small.mdi-action-exit-to-app
+                  p#logout 退出登陆
+            - else
               a.right.side-nav.button-collapse(data-activates='userSignup')
                 i.small.mdi-action-perm-identity
+              ul.side-nav.full.grey.darken-3#userSignup
+                li
+                  i.small.mdi-social-person
+                  a(href='/signin')
+                    p#signIn 登陆
+                
+                li
+                  i.small.mdi-social-person-add
+                  a(href='/signup')
+                    p#signUp 注册
+                li
+                  i.small.mdi-action-info
+                  a(href='/about')
+                    p#aboutUs 关于我们
             
     div.flash_tips
-      -if(success)
-        div.flash_tips_success = success
-      -if(error)
-        div.flash_tips_error = error
-
-    ul.side-nav.full.grey.darken-3#userSignup
-      li
-        i.small.mdi-social-person
-        a(href='/signin')
-          p#signIn 登陆
-      
-      li
-        i.small.mdi-social-person-add
-        a(href='/signup')
-          p#signUp 注册
-      li
-        i.small.mdi-action-info
-        a(href='/about')
-          p#aboutUs 关于我们
-
-    ul.side-nav.full.grey.darken-3#userInfo
-      li
-        div#userImg
-          img(src='http://tp4.sinaimg.cn/3025484163/180/40035859035/1')
-      li
-        i.small.mdi-social-person
-        p#userName 苏文俊
-      li
-        i.small.mdi-hardware-phone-android
-        p#userPhone 13824474170
-      li
-        i.small.mdi-notification-folder-special
-        p#userFav 我的收藏
-      li
-        i.small.mdi-action-info
-        p#aboutUs 关于我们
-      li
-        i.small.mdi-action-exit-to-app
-        p#logout 退出登陆
+      - if(success)
+        div.flash_tips_success #{success}
+      - if(error)
+        div.flash_tips_error #{error}
+  
     #content
       block content
     script(src="/lib/jQuery-2.1.3.js")
