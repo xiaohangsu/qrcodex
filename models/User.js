@@ -16,7 +16,8 @@ User.prototype = {
       school: school,
       studentClass: studentClass,
       studentID: studentID,
-      phoneNumber: phoneNumber
+      phoneNumber: phoneNumber,
+      myFav: {}
     }).then(function(user) {
       callback(user);
     }, function(error) {

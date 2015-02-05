@@ -11,6 +11,19 @@ a {
 .right.side-nav {
   margin-right: 5px;
 }
+.flash_tips {
+  width: 100%;
+  font-size: 17px;
+  text-align: center;
+  position: fixed;
+  z-index: -1;
+}
+.flash_tips_success {
+  background-color: #49f449;
+}
+.flash_tips_error {
+  background-color: #f53e3e;
+}
 #content {
   margin: 0 5px 0 5px;
 }
@@ -37,9 +50,10 @@ a {
   overflow: auto;
 }
 #userImg {
-  margin: 15px auto;
-  width: 80px;
-  height: 80px;
+  padding: 10px;
+  margin: 0 auto;
+  width: 100px;
+  height: 100px;
 }
 #userImg img {
   width: 100%;
