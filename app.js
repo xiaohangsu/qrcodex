@@ -5,6 +5,7 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
+var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 var app = express();
 var config = require('./config');
@@ -32,12 +33,16 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 1
-    }//TTL: one day
+    },//TTL: one day
+    store: new MongoStore({
+        db: 'QR_Session'
+    })
 }));
 
 app.use('/', require('./routes/index'));
 app.use('/signin', require('./routes/signin'));
 app.use('/signup', require('./routes/signup'));
+app.use('/editprofile', require('./routes/editProfile'));
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

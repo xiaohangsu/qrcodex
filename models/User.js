@@ -7,7 +7,7 @@ function User() {}
 
 User.prototype = {
   /**
-   * Add a new user
+   * Add a new user - sub function
    */
   addNewUser: function(username, school, studentClass, studentID, phoneNumber, callback) {
     var newUser = new QRUser();
@@ -24,6 +24,26 @@ User.prototype = {
       callback({
         error: error.description
       });
+    });
+  },
+
+  /**
+   * Update a user's infomation - sub function
+   **/
+  updateUser: function(username, school, studentClass, studentID, user, callback) {
+    user.set('username', username);
+    user.set('school', school);
+    user.set('studentClass', studentClass);
+    user.set('studentID', studentID);
+    user.save(null, {
+      success: function(user) {
+        callback(user);
+      },
+      error: function(error) {
+        callback({
+          error: error.description
+        });
+      }
     });
   },
 
@@ -56,7 +76,6 @@ User.prototype = {
    * Sign in a user
    **/
   signIn: function(phoneNumber, verifyCode, callback) {
-    var self = this;
     var query = new AV.Query(QRUser);
     query.equalTo('phoneNumber', phoneNumber);
     query.first({
@@ -66,7 +85,7 @@ User.prototype = {
             error: 'user does not exist'
           });
         } else {
-          AV.Cloud.verifySmsCode(verifyCode).then(function() {
+          AV.Cloud.verifySmsCode(verifyCode, phoneNumber).then(function() {
             callback({
               user: user,
               success: 'success'
@@ -75,6 +94,31 @@ User.prototype = {
             callback({
               error: 'verify code does not correct'
             });
+          });
+        }
+      },
+      error: function(error) {
+        callback({
+          error: error.description
+        });
+      }
+    });
+  },
+
+  /**
+   * Update a user's infomation
+   */
+  updateUserInfo: function(username, school, studentClass, studentID, phoneNumber, callback) {
+    var self = this;
+    var query = new AV.Query(QRUser);
+    query.equalTo('phoneNumber', phoneNumber);
+    query.first({
+      success: function(user) {
+        if (user) {
+          self.updateUser(username, school, studentClass, studentID, user, callback);
+        } else {
+          callback({
+            error: 'user does not exist'
           });
         }
       },

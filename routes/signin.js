@@ -22,6 +22,11 @@ router.get('/', function(req, res, next) {
 
 /* POST signin page */
 router.post('/', function(req, res, next) {
+  if (req.session.user) {
+    req.flash('error', '请先登出');
+    return res.redirect('/');
+  }
+
   var phoneNumber = req.body.signin_phone_number,
     verifyCode = req.body.signin_verify_code;
   if (phoneNumber === '' | verifyCode === '') {
