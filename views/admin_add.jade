@@ -1,6 +1,52 @@
 extends admin_layout
 
 block content
-  #admin-add-form.container
-    #title-add-container.valign-wrapper
-      h1 Admin - Add
+  .row
+    #admin-add-left-form.container.valign-wrapper.col.s3
+      .title-add-container
+        h3.valign-wrapper 试卷
+        label 选择科目
+        select#select-subject.browser-default
+         option(value="" disabled selected) 选择科目
+         -  for i in subject
+            option(value='#{i}') #{i}
+    #admin-add-right-form.valign-wrapper.col.s9(style='visibility:hidden')
+      .title-add-container
+        div
+          h1.valign-wrapper 试题
+          .row
+            div.col.s6
+              .input-field.left-align
+                h4 添加试卷
+                input#paper-name-input(placeholder='试卷名称' type='text')
+                a#add-paper.btn-floating.btn-large.wave-effect.blue
+                  i.mdi-content-add
+            div.col.s6
+              .input-field.right-align
+                h4 添加试题
+                a#add-question.btn-floating.btn-large.wave-effect.blue
+                  i.mdi-content-add
+                a#reduce-question.btn-floating.btn-large.wave-effect.red
+                  i.mdi-navigation-arrow-back
+        table.bordered.hoverable
+          thread
+            tr
+              th(data-field='type' width='20%') 题型
+              th(data-field='number' width='20%') 题号
+              th(data-field='content' width='35%') 内容(选填)
+              th(data-field='answer' width='25%') 答案
+
+          tbody.input-field
+            tr.question-blank-item(style = 'display:none')
+              td 
+                input.question-type-input(name='type' type='text' placeholder='题型(必填)')
+              td 
+                input.question-number-input(type='text' name='number')
+              td
+                textarea.question-content-textarea.materialize-textarea(name='content' type='text' placeholder='内容(选填)')
+              td
+                textarea.question-answer-textarea.materialize-textarea(name='answer' type='text' placeholder='答案(必填)')
+
+        #bottom-button-bar.row.valign-wrapper
+          button#submit.btn-large.wave-effect.wave-light(disabled='disabled') 确认修改
+            i.mdi-content-send.right

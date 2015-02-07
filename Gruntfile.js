@@ -4,7 +4,7 @@ module.exports = function(grunt) {
 		//清理css与js文件
 		clean: {
 			stylesheets: ['public/stylesheets/*.css', '!public/stylesheets/admin.css'],
-			javascript: ['public/javascripts/build.min.js', 'public/javascript/build.js']
+			javascript: ['public/javascripts/build.min.js', 'public/javascript/build.js', '!public/javascript/admin.js']
 		},
 		//合并css文件生成style.css
 		less: {
@@ -25,7 +25,7 @@ module.exports = function(grunt) {
 			},
 
 			javascripts: {
-				src: ['public/javascripts/**/*.js', '!public/javascripts/build.min.js', '!public/javascripts/build.js', '!public/javascripts/global.js'],
+				src: ['public/javascripts/**/*.js', '!public/javascripts/build.min.js', '!public/javascripts/build.js', '!public/javascripts/admin.js'],
 				dest: 'public/javascripts/build.js'
 			}
 		},

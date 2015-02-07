@@ -3,6 +3,17 @@
   padding: 0;
 }
 
+.title-add-container .s6 .input-field h4 {
+  display: inline-block;
+  margin-right: 20px;
+}
+
+.title-add-container .s6 .input-field input {
+  display: inline-block;
+  margin-right: 10px;
+  width: 30%
+}
+
 .flash_tips {
   width: 60%;
   font-size: 35px;
@@ -15,4 +26,16 @@
 }
 .flash_tips_error {
   background-color: rgb(245, 62, 62);
+}
+
+.title-add-container {
+  width: 100%;
+}
+
+#add-question {
+  margin-right: 10px;
+}
+
+#bottom-button-bar {
+  margin: 30px;
 }
