@@ -12,4 +12,16 @@ router.get('/', function(req, res, next) {
   });
 });
 
+/* logout a user */
+router.get('/logout', function(req, res, next) {
+  if(!req.session.user) {
+    req.flash('error', '你处于未登录状态');
+    return res.redirect('/');
+  } else {
+    req.session.user = null;
+    req.flash('success', '登出成功');
+    return res.redirect('/');  
+  }
+});
+
 module.exports = router;

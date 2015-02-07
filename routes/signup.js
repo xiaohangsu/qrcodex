@@ -19,9 +19,14 @@ router.get('/', function(req, res, next) {
 
 /* POST signup page */
 router.post('/', function(req, res, next) {
+  if (req.session.user) {
+    req.flash('error', '请先登出');
+    return res.redirect('/');
+  }
+
   var username = req.body.signup_username,
     school = req.body.signup_school,
-    studentClass = req.body.signup_class,
+    studentClass = req.body.signup_studentClass,
     studentID = req.body.signup_studentID,
     phoneNumber = req.body.signup_phone_number;
 
@@ -47,7 +52,7 @@ router.post('/', function(req, res, next) {
       console.log('==================');
       return res.redirect('/signup');
     } else {
-      req.flash('error', '注册失败');
+      req.flash('error', '服务器发生错误, 请稍后再试');
       console.log('========================');
       console.log('注册失败: ' + result.error);
       console.log('========================');

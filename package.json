@@ -15,6 +15,7 @@
     "serve-favicon": "~2.2.0",
     "connect-flash": "latest",
     "express-session": "latest",
+    "connect-mongo": "latest",
     "avoscloud-sdk":"latest"
   },
   "devDependencies": {

@@ -4,11 +4,11 @@ block content
     form#sigin_form(method='post')
       div.input-field
         i.small.mdi-hardware-phone-android.prefix
-        input(type='text' name='signin_phone' placeholder='手机号码')
+        input#signin_phone_number(type='text' name='signin_phone_number' placeholder='手机号码(11位)')
       div.input-field
         i.small.mdi-content-mail.prefix
-        input(type='text' name='signin_verify_code' placeholder='验证码')
-      span#get_verify_code.btn.waves-effect.waves-light 获取验证码
+        input(type='text' name='signin_verify_code' placeholder='验证码(6位)')
+      a#get_verify_code.btn 获取验证码
       div.row#signin_btns
         div.col.s6
           button(type='submit')#signin_btn.btn-large.waves-effect.waves-light 登陆
