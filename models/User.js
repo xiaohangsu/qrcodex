@@ -18,7 +18,7 @@ User.prototype = {
       studentID: studentID,
       phoneNumber: phoneNumber,
       myFav: {},
-      myPic: 'default'
+      myPic: '/images/default.jpg'
     }).then(function(user) {
       callback(user);
     }, function(error) {
