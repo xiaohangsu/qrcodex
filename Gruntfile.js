@@ -101,5 +101,4 @@ module.exports = function(grunt) {
 
 	//设置默认任务
 	grunt.registerTask('default', ['clean', 'less', 'jshint:beforeConcat', 'concat', 'jshint:afterConcat', 'express', 'watch']);
-
 };

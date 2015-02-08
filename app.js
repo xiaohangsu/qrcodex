@@ -16,7 +16,7 @@ app.set('view engine', 'jade');
 
 // uncomment after placing your favicon in /public
 // app.use(favicon(__dirname + '/public/favicon.ico'));
-//app.use(logger('dev'));
+app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: false
@@ -44,7 +44,8 @@ app.use('/signin', require('./routes/signin'));
 app.use('/admin', require('./routes/admin'));
 app.use('/signup', require('./routes/signup'));
 app.use('/resource', require('./routes/resource'));
-app.use('/editprofile', require('./routes/editProfile'));
+app.use('/editProfile', require('./routes/editProfile'));
+app.use('/editPic', require('./routes/editPic'));
 
 
 // catch 404 and forward to error handler

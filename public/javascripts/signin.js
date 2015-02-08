@@ -40,7 +40,7 @@
     } else {
       var phoneNumber = $('#signin_phone_number').val();
       if (phoneNumber === '' | phoneNumber.length !== 11) {
-        alert('无法识别的手机号码');
+        toast('无法识别的手机号码', 2000);
         return;
       }
       $(this).css('background-color', 'grey');
