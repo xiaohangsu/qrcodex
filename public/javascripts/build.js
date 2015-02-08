@@ -1,4 +1,13 @@
 (function() {
+  $('.user_pics img').click(function() {
+    var newVal = $(this).attr('ref');
+    $('.user_pics img').removeClass('user_pics_active');
+    $('.user_pics img').addClass('user_pics_img');
+    $(this).removeClass('user_pics_img');
+    $(this).addClass('user_pics_active');
+    $('#edit_pic_input').val(newVal);
+  });
+})();;(function() {
   //右侧栏弹出用户菜单
   $('.button-collapse').sideNav({
     edge: 'right'
@@ -52,7 +61,7 @@
     } else {
       var phoneNumber = $('#signin_phone_number').val();
       if (phoneNumber === '' | phoneNumber.length !== 11) {
-        alert('无法识别的手机号码');
+        toast('无法识别的手机号码', 2000);
         return;
       }
       $(this).css('background-color', 'grey');
