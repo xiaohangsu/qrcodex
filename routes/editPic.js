@@ -29,6 +29,7 @@ router.post('/', function(req, res, next) {
 
   var checkResult = function(result) {
     if(result.id) {
+      console.log(result);
       req.session.user = result;
       req.flash('success', '更新成功');
       console.log('==============');
@@ -51,7 +52,7 @@ router.post('/', function(req, res, next) {
   };
 
   var user = new User();
-  user.updateUserPic(req.session.phoneNumber, req.body.edit_user_pic, checkResult);
+  user.updateUserPic(req.session.user.phoneNumber, req.body.edit_user_pic, checkResult);
 });
 
 module.exports = router;

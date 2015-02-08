@@ -15,6 +15,12 @@
   height: 80px;
   margin: auto 5px;
 }
+.user_pics_girl {
+  margin-top: 15px;
+}
+.user_pics_boy {
+  margin-top: 15px;
+}
 .user_pics_img {
   cursor: pointer;
   padding: 2px;
