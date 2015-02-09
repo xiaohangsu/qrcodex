@@ -19,8 +19,9 @@ html
                 i.small.mdi-action-perm-identity
               ul.side-nav.full.grey.darken-3#userInfo
                 li
-                  div#userImg
-                    img(src='http://tp4.sinaimg.cn/3025484163/180/40035859035/1')
+                  a(href='/editPic')
+                    div#userImg
+                      img(src=user.myPic)
                 li
                   i.small.mdi-social-person
                   a(href='/editProfile')#userName #{user.username}
