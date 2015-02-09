@@ -17,7 +17,8 @@ User.prototype = {
       studentClass: studentClass,
       studentID: studentID,
       phoneNumber: phoneNumber,
-      myFav: {}
+      myFav: {},
+      myPic: '/images/default.jpg'
     }).then(function(user) {
       callback(user);
     }, function(error) {
@@ -35,6 +36,23 @@ User.prototype = {
     user.set('school', school);
     user.set('studentClass', studentClass);
     user.set('studentID', studentID);
+    user.save(null, {
+      success: function(user) {
+        callback(user);
+      },
+      error: function(error) {
+        callback({
+          error: error.description
+        });
+      }
+    });
+  },
+
+  /**
+   * Update a user's picture - sub function
+   **/
+  updatePic: function(user, pic, callback) {
+    user.set('myPic', pic);
     user.save(null, {
       success: function(user) {
         callback(user);
@@ -116,6 +134,31 @@ User.prototype = {
       success: function(user) {
         if (user) {
           self.updateUser(username, school, studentClass, studentID, user, callback);
+        } else {
+          callback({
+            error: 'user does not exist'
+          });
+        }
+      },
+      error: function(error) {
+        callback({
+          error: error.description
+        });
+      }
+    });
+  },
+
+  /**
+   * Update a user's picture
+   **/
+  updateUserPic: function(phoneNumber, pic, callback) {
+    var self = this;
+    var query = new AV.Query(QRUser);
+    query.equalTo('phoneNumber', phoneNumber);
+    query.first({
+      success: function(user) {
+        if (user) {
+          self.updatePic(user, pic, callback);
         } else {
           callback({
             error: 'user does not exist'

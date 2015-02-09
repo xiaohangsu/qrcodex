@@ -1,0 +1,15 @@
+{
+  "user_pics": {
+    "default": "/images/default.jpg",
+    "girl": [
+      "/images/girl_1.jpg",
+      "/images/girl_2.jpg",
+      "/images/girl_3.jpg"
+    ],
+    "boy": [
+      "/images/boy_1.jpg",
+      "/images/boy_2.jpg",
+      "/images/boy_3.jpg"
+    ]
+  }
+}

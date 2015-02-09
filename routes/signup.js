@@ -34,6 +34,10 @@ router.post('/', function(req, res, next) {
     req.flash('error', '请填写注册所需的完整信息');
     return res.redirect('/signup');
   }
+  if (phoneNumber.length !== 11) {
+    req.flash('error', '手机号码长度为11位, 请重新填写');
+    return res.redirect('/signup');
+  }
 
   var user = new User();
 

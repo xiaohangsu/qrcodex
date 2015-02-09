@@ -1,0 +1,39 @@
+extends layout
+
+block content
+  form#pic_form(method='post')
+    input#edit_pic_input(type='text' name='edit_user_pic' value=user.myPic)
+    div.user_pics_default
+      h6 默认
+      hr
+      div.user_pics(style='display:inline-block;')
+        - if (user.myPic == '/images/default.jpg')
+          img.user_pics_active(src=UserPics.user_pics.default ref='/images/default.jpg')
+        - else
+          img.user_pics_img(src=UserPics.user_pics.default ref='/images/default.jpg')
+    
+    div.user_pics_girl
+      h6 女生
+      hr
+      - each girl_pic in UserPics.user_pics.girl
+        div.user_pics(style='display:inline-block;')
+          - if (user.myPic == girl_pic)
+            img.user_pics_active(src=girl_pic ref=girl_pic)
+          - else
+            img.user_pics_img(src=girl_pic ref=girl_pic)
+
+    div.user_pics_boy
+      h6 男生
+      hr
+      - each boy_pic in UserPics.user_pics.boy
+        div.user_pics(style='display:inline-block;')
+          - if (user.myPic == boy_pic)
+            img.user_pics_active(src=boy_pic ref=boy_pic)
+          - else
+            img.user_pics_img(src=boy_pic ref=boy_pic)
+    
+    div.row#edit_pic_btns
+      div.col.s6
+        button(type='submit')#edit_pic_btn.btn-large.waves-effect.waves-light 保存
+      div.col.s6
+        a(href='/').go_back.btn-large.waves-effect.waves-light 返回
