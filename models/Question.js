@@ -51,6 +51,7 @@ Question.prototype = {
 
         CURRENT_POINT ++;
         if (CURRENT_POINT === SIZE_POINT) {
+          paper_index.set('questionNumber', SIZE_POINT);
           paper_index.save();
         }
       },
