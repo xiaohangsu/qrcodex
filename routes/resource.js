@@ -17,11 +17,11 @@ router.post('/add-paper/:subject', function(req, res, next) {
 });
 
 /**
-* req.query 2 TWO params
-* subject= (subject)
-* & objectId=(ExamPaperId)
-* url/get_paper_answer?subject=subject&object_id=object_id
-**/
+ * req.query 2 TWO params
+ * subject= (subject)
+ * & objectId=(ExamPaperId)
+ * url/get_paper_answer?subject=subject&object_id=object_id
+ **/
 router.get('/get_paper_answer/', function(req, res, next) {
   var paper_index = new Paper_index(req.query.subject);
 
@@ -46,6 +46,29 @@ router.get('/get_paper_answer/', function(req, res, next) {
 
   paper_index.getAnswers(req.query.objectId, getAnswers);
 
+});
+
+/**
+ * req.query 2 TWO params
+ * subject= (subject)
+ * & objectId=(QuestionId)
+ * url/add_question_comment?subject=subject&object_id=object_id
+ **/
+router.get('/add_question_comment', function(req, res, next) {
+  var subject = new Question(req.query.subject);
+  subject.addComment(req.query.object_id);
+});
+
+
+/**
+ * req.query 2 TWO params
+ * subject= (subject)
+ * & objectId=(QuestionId)
+ * url/subtract_question_comment?subject=subject&object_id=object_id
+ **/
+router.get('/subtract_question_comment', function(req, res, next) {
+  var subject = new Question(req.query.subject);
+  subject.subtractComment(req.query.object_id);
 });
 
 module.exports = router;

@@ -3,8 +3,8 @@ var config = require('../config');
 var Paper_index = require('./Paper_index');
 AV.initialize(config.avos_app_id, config.avos_app_key);
 /**
-  * handle Callback variable
-  **/
+ * handle Callback variable
+ **/
 var CURRENT_POINT = 1;
 var SIZE_POINT = 1;
 
@@ -45,13 +45,13 @@ Question.prototype = {
       number: para2,
       content: para3,
       answer: para4,
-      comment : 0
+      comment: 0
     }, {
       success: function(question) {
         paper_index.set(para2, question);
         console.log('New object created with objectId: ' + question.id);
 
-        CURRENT_POINT ++;
+        CURRENT_POINT++;
         if (CURRENT_POINT === SIZE_POINT) {
           paper_index.set('questionNumber', SIZE_POINT);
           paper_index.save();
@@ -199,7 +199,7 @@ Question.prototype = {
         this.error = error.description;
       }
     });
-  }
+  },
 
   //   /**
   //    * Modify Attribute
@@ -211,6 +211,47 @@ Question.prototype = {
   //     }
   //     target.save();
   //   }
+
+  /**
+   * add comment
+   * Param : QuestionId
+   * return --comment
+   **/
+    addComment: function(ObjectId) {
+    var query = new AV.Query(this.Question);
+    query.get(ObjectId, {
+      success: function(target) {
+        if (target.get('comment') === undefined) {
+          target.set('comment', 0);
+        } else {
+          target.set('comment', target.get('comment') + 1);
+        }
+        target.save();
+      }
+    });
+  },
+
+  /**
+   * subtract comment
+   * Param : QuestionId
+   * return --comment
+   **/
+    subtractComment: function(ObjectId) {
+    var query = new AV.Query(this.Question);
+    query.get(ObjectId, {
+      success: function(target) {
+        if (target.get('comment') === undefined) {
+          target.set('comment', 0);
+        } else if (target.get('comment') === 0) {
+          return;
+        } else {
+          target.set('comment', target.get('comment') - 1);
+        }
+
+        target.save();
+      }
+    });
+  }
 };
 
 module.exports = Question;
