@@ -22,30 +22,16 @@ router.post('/add-paper/:subject', function(req, res, next) {
  * & objectId=(ExamPaperId)
  * url/get_paper_answer?subject=subject&object_id=object_id
  **/
-router.get('/get_paper_answer/', function(req, res, next) {
+router.get('/get_paper_answer', function(req, res, next) {
   var paper_index = new Paper_index(req.query.subject);
-
-  // callback
-  /**
-  * AnswerSheet = { 0 : {
-                                        answer : answer,
-                                        comment : comment,
-                                        objectId : question_ObjectId
-                                     },
-  *                            1 : {
-                                        answer : answer,
-                                        comment : comment,
-                                        objectId : question_ObjectId
-                                     },
-  *                                                         .....}
-  **/
-  var getAnswers = function(AnswerSheet) {
-    console.log(AnswerSheet);
-    return AnswerSheet;
+  var getAnswersCallback = function(AnswerSheet) {
+    console.log(JSON.stringify(AnswerSheet));
+    console.log('========================');
+    console.log('Compelete Sending Answer');
+    console.log('========================');
   };
 
-  paper_index.getAnswers(req.query.objectId, getAnswers);
-
+  paper_index.getAnswers(req.query.objectId, getAnswersCallback); 
 });
 
 /**

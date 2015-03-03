@@ -29,27 +29,41 @@ Paper_index.prototype = {
         //using JSON avoid JShint error : Don't make functions within a loop.
         var fetchCallbackJSON = {
           success: function(question) {
-            answerSheet[question.get('number')] = {
-              answer : question.get('answer'),
-              comment : question.get('comment'),
-              object_id : question.id
+            console.log('===============================================');
+            console.log('Before Each Object created-' + this.currentPoint);
+            console.log('===============================================');
+            answerSheet[this.currentPoint] = {
+              // type: question.get('type'),
+              // index: question.get('number'),
+              // answer: question.get('answer'),
+              // comment: question.get('comment'),
+              object_id: question.id
             };
             if (this.currentPoint === this.QuestionNumber) {
+              console.log('===============================');
+              console.log('Before External Callback called');
+              console.log('===============================');
               callback();
             }
             this.currentPoint++;
+            console.log('===============');
+            console.log(this.currentPoint);
+            console.log('===============');
           }
         };
 
         this.QuestionNumber = parseInt(paper_index.get('questionNumber'));
         this.currentPoint = 1;
+        console.log('===========================');
+        console.log('Before Generating JSON FILE');
+        console.log('===========================');
         for (var i = 1; i <= this.QuestionNumber; i++) {
           // if not JSON error occur here
           paper_index.get(i).fetch(fetchCallbackJSON);
         }
-
-
-
+        console.log('===========================');
+        console.log('After  Generating JSON FILE');
+        console.log('===========================');
       },
       error: function(object, error) {
         console.log(error.description);
@@ -58,14 +72,15 @@ Paper_index.prototype = {
   },
 
   getAnswers: function(ExamPaperObjectId, callback) {
-    var getFormatAnswerCallback = function() {
-      callback(JSON.stringify(answerSheet));
-      answerSheet = {};
+    // var getFormatAnswerCallback = function() {
+    //   console.log('================================');
+    //   console.log('Before getAnswer Callback called');
+    //   console.log('================================');
+    //   callback(JSON.stringify(answerSheet));
+    //   answerSheet = {};
+    // };
 
-    };
-
-    this.getPaperIndex(ExamPaperObjectId, getFormatAnswerCallback);
-
+    this.getPaperIndex(ExamPaperObjectId, callback);
   }
 };
 

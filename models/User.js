@@ -1,7 +1,7 @@
 var AV = require('avoscloud-sdk').AV;
 var config = require('../config');
 AV.initialize(config.avos_app_id, config.avos_app_key);
-var QRUser = AV.Object.extend('QRUser');
+var QRUser = AV.Object.extend('Student');
 
 function User() {}
 
@@ -93,25 +93,20 @@ User.prototype = {
   /**
    * Sign in a user
    **/
-  signIn: function(phoneNumber, verifyCode, callback) {
+  signIn: function(username, password, callback) {
     var query = new AV.Query(QRUser);
-    query.equalTo('phoneNumber', phoneNumber);
+    query.equalTo('username', username);
+    query.equalTo('password', password);
     query.first({
       success: function(user) {
         if (!user) {
           callback({
-            error: 'user does not exist'
+            error: 'can\'t find the user'
           });
         } else {
-          AV.Cloud.verifySmsCode(verifyCode, phoneNumber).then(function() {
-            callback({
-              user: user,
-              success: 'success'
-            });
-          }, function(error) {
-            callback({
-              error: 'verify code does not correct'
-            });
+          callback({
+            user: user,
+            success: 'success'
           });
         }
       },
