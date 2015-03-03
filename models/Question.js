@@ -34,6 +34,7 @@ Question.prototype = {
    * para2 : Qus Number
    * para3 : Qus Content
    * para4 : Qus Answer
+   * para5 : Comments
    **/
   newQuestion: function(para0, para1, para2, para3, para4, paper_index) {
     var question = new this.Question();
@@ -43,7 +44,8 @@ Question.prototype = {
       type: para1,
       number: para2,
       content: para3,
-      answer: para4
+      answer: para4,
+      comment : 0
     }, {
       success: function(question) {
         paper_index.set(para2, question);
@@ -79,23 +81,23 @@ Question.prototype = {
     }
   },
 
-  /**
-   * Question New
-   * paraJSON as above
-   **/
-  newQuestionByJSON: function(paraJSON, paper_index) {
-    var question = new this.Question();
-    question.save(paraJSON, {
-      success: function(question) {
-        paper_index.set(paraJSON.number, paraJSON.question);
-        console.log('New object created with objectId: ' + question.id);
-      },
-      error: function(question, error) {
-        this.error = error.description;
-        alert('Failed to create new object, with error code: ' + error.description);
-      }
-    });
-  },
+  // /**
+  //  * Question New
+  //  * paraJSON as above
+  //  **/
+  // newQuestionByJSON: function(paraJSON, paper_index) {
+  //   var question = new this.Question();
+  //   question.save(paraJSON, {
+  //     success: function(question) {
+  //       paper_index.set(paraJSON.number, paraJSON.question);
+  //       console.log('New object created with objectId: ' + question.id);
+  //     },
+  //     error: function(question, error) {
+  //       this.error = error.description;
+  //       alert('Failed to create new object, with error code: ' + error.description);
+  //     }
+  //   });
+  // },
 
   /**
    * query By Object Id

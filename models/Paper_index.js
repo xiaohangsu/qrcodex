@@ -29,7 +29,11 @@ Paper_index.prototype = {
         //using JSON avoid JShint error : Don't make functions within a loop.
         var fetchCallbackJSON = {
           success: function(question) {
-            answerSheet[question.get('number')] = question.get('answer');
+            answerSheet[question.get('number')] = {
+              answer : question.get('answer'),
+              comment : question.get('comment'),
+              object_id : question.id
+            };
             if (this.currentPoint === this.QuestionNumber) {
               callback();
             }

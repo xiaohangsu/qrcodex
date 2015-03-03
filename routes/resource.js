@@ -27,8 +27,16 @@ router.get('/get_paper_answer/', function(req, res, next) {
 
   // callback
   /**
-  * AnswerSheet = { 0 : Question0Answer,
-  *                            1 : Question1Answer,
+  * AnswerSheet = { 0 : {
+                                        answer : answer,
+                                        comment : comment,
+                                        objectId : question_ObjectId
+                                     },
+  *                            1 : {
+                                        answer : answer,
+                                        comment : comment,
+                                        objectId : question_ObjectId
+                                     },
   *                                                         .....}
   **/
   var getAnswers = function(AnswerSheet) {
