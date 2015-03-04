@@ -17,7 +17,8 @@
     "express-session": "latest",
     "connect-mongo": "latest",
     "avoscloud-sdk":"latest",
-    "xlsx": "latest"
+    "xlsx": "latest",
+    "xlsjs": "latest"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
