@@ -34,7 +34,6 @@ Question.prototype = {
    * para2 : Qus Number
    * para3 : Qus Content
    * para4 : Qus Answer
-   * para5 : Comments
    **/
   newQuestion: function(para0, para1, para2, para3, para4, paper_index) {
     var question = new this.Question();

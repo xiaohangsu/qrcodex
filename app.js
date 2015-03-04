@@ -9,6 +9,10 @@ var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 var app = express();
 var config = require('./config');
+var XLS = require("xlsjs");
+var workbook = XLS.readFile('student.xls');
+// console.log(workbook.Sheets.Sheet1);
+console.log(XLS.utils.make_json(workbook.Sheets.Sheet1).length);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
