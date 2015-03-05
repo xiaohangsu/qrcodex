@@ -12,7 +12,7 @@
   width: 100%;
   text-align: center;
   position: fixed;
-  z-index: -1;
+  z-index: 9;
 }
 .flash_tips_success {
   background-color: #49f449;
@@ -22,6 +22,13 @@
 }
 #layout_title {
   margin-left: 25px;
+}
+#paperNav p {
+  color: white;
+  font-size: 16px;
+}
+#paperNav li {
+  border-bottom: 1px solid grey;
 }
 #userInfo {
   color: white;
@@ -42,7 +49,7 @@
   width: 100%;
   text-align: center;
   position: fixed;
-  z-index: -1;
+  z-index: 9;
   transition: transform 1s;
   transform: translate(0px, -40px);
   -o-transition: -o-transform 1s;
@@ -53,6 +60,32 @@
   -moz-transform: translate(0px, -40px);
   -webkit-transition: -webkit-transform 1s;
   -webkit-transform: translate(0px, -40px);
+}
+
+.card-panel {
+  padding: 1rem;
+  z-index: 0;
+}
+#paper_page .card-panel a {
+  margin-top: 10px;
+  margin-right: 5px;
+  background-color: white;
+  color: black;
+  padding: 0px 1rem;
+}
+.container {
+  padding: 6px;
+}
+#paper_page .divider {
+  height: 5px;
+  overflow: hidden;
+  background-color: white;
+}
+.BtnActive {
+  background-color: #26a69a !important;
+}
+.paperBtns {
+  border-top: 1px solid grey;
 }
 
 #signin_form {

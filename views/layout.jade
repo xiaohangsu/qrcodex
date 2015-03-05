@@ -8,15 +8,27 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     .navbar-fixed
-      nav
+      nav.teal.ligthen-5
         .nav-wrapper
           .col.s12
             .left.side-nav
               a.left.side-nav.button-collapse#paperCollapse(data-activates='paperNav')
                 i.small.mdi-action-list
               ul.side-nav.full.grey.darken-3#paperNav
-                li
-                  p test
+                - if (paper)
+                  - each type in paper.questions
+                    li
+                      a(href='##{type.name}')
+                        p #{type.title}
+                - else if(user)
+                  li
+                    a(href='/')
+                      p 返回首页
+                - else
+                  li
+                    a(href='!#') 
+                      p 加载中...
+
             span#layout_title #{title}
             - if (user)
               a.right.side-nav.button-collapse.userCollapse(data-activates='userInfo')

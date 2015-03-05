@@ -22,6 +22,8 @@ router.post('/', function(req, res, next) {
   var checkResult = function(result) {
     if (result.success == 'success') {
       req.session.user = result.user.attributes;
+      req.session.user.objectId = result.user.id;
+      console.log(req.session.user);
       req.flash('success', '登陆成功');
       console.log('======');
       console.log('登陆成功');
