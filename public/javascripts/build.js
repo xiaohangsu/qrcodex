@@ -1,15 +1,9 @@
 (function() {
-  $('.user_pics img').click(function() {
-    var newVal = $(this).attr('ref');
-    $('.user_pics img').removeClass('user_pics_active');
-    $('.user_pics img').addClass('user_pics_img');
-    $(this).removeClass('user_pics_img');
-    $(this).addClass('user_pics_active');
-    $('#edit_pic_input').val(newVal);
+  $('#paperCollapse').sideNav({
+    edge: 'left'
   });
-})();;(function() {
   //右侧栏弹出用户菜单
-  $('.button-collapse').sideNav({
+  $('.userCollapse').sideNav({
     edge: 'right'
   });
 
@@ -19,6 +13,101 @@
       $('.flash_tips').removeClass().addClass('flash_tips_animate');
     });
   }
+})();;(function() {
+  $('.collectBtn').click(function() {
+    var quesIndex = $(this).parent().parent().attr('ques_index');
+    var status = $(this).parent().attr('status');
+    if (status == 'logged_in') {
+      var self = $(this);
+      if ($(this)[0].innerHTML == '收藏') {
+        $.ajax({
+          type: 'POST',
+          url: '/resource/update_my_fav',
+          data: {
+            quesIndex: quesIndex,
+            operation: '+'
+          },
+          success: function() {
+            $(self).text('已收藏');
+            $(self).addClass('BtnActive');
+          }
+        });
+      } else {
+        $.ajax({
+          type: 'POST',
+          url: '/resource/update_my_fav',
+          data: {
+            quesIndex: quesIndex,
+            operation: '-'
+          },
+          success: function() {
+            $(self).text('收藏');
+            $(self).removeClass('BtnActive');
+          }
+        });
+      }
+    } else {
+      alert('登陆后才可收藏');
+      $('.userCollapse').trigger('click');
+      return;
+    }
+  });
+})();;(function() {
+  $('.reviewBtn').click(function() {
+    var object_id = $(this).parent().parent().attr('ques_id'),
+      quesIndex = $(this).parent().parent().attr('ques_index');
+    var status = $(this).parent().attr('status');
+    if (status == 'logged_in') {
+      var self = $(this);
+      if ($(this)[0].innerHTML == '点评') {
+        $.ajax({
+          type: 'POST',
+          url: '/resource/add_question_comment',
+          data: {
+            subject: 'ENGLISH',
+            objectId: object_id
+          }
+        });
+        $.ajax({
+          type: 'POST',
+          url: '/resource/update_my_review',
+          data: {
+            quesIndex: quesIndex,
+            operation: '+'
+          },
+          success: function() {
+            $(self).text('点评(+1)');
+            $(self).addClass('BtnActive');
+          }
+        });
+      } else {
+        $.ajax({
+          type: 'POST',
+          url: '/resource/subtract_question_comment',
+          data: {
+            subject: 'ENGLISH',
+            objectId: object_id
+          }
+        });
+        $.ajax({
+          type: 'POST',
+          url: '/resource/update_my_review',
+          data: {
+            quesIndex: quesIndex,
+            operation: '-'
+          },
+          success: function() {
+            $(self).text('点评');
+            $(self).removeClass('BtnActive');
+          }
+        });
+      }
+    } else {
+      alert('登陆后才能点评');
+      $('.userCollapse').trigger('click');
+      return;
+    }
+  });
 })();;(function() {
   var counter = 61;
   //倒计时1分钟可以重新发送获取验证码短信

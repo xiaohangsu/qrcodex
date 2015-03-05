@@ -1,5 +1,31 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div#paper_page
+    -if (paper)
+      ul
+        - each type in paper.questions
+          div.container
+            h5 #{type.title}
+            - each answer in type.answers
+              li
+                div.card-panel(ques_id=answer.object_id ques_index=answer.index)
+                  div.flow-text
+                    span #{answer.index}
+                    sapn . 
+                    - if (type.name == 'writting')
+                      span !{answer.answer}
+                    - else
+                      span #{answer.answer}
+                  div.divider
+                  - if (user)
+                    div.paperBtns(status='logged_in')
+                      a.btn.collectBtn 收藏
+                      a.btn.reviewBtn 点评
+                  - else
+                    div.paperBtns(status='not_log_in')
+                      a.btn.collectBtn 收藏
+                      a.btn.reviewBtn 点评
+
+    - else
+      p 加载中...

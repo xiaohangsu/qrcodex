@@ -1,0 +1,8 @@
+extends layout
+
+block content
+  ul.container
+    h5 我的点评
+    - each ques_index in user.myReview
+      div.card-panel.flow-text
+        li #{ques_index}

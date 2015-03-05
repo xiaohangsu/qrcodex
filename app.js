@@ -11,8 +11,6 @@ var app = express();
 var config = require('./config');
 var XLS = require("xlsjs");
 var workbook = XLS.readFile('student.xls');
-// console.log(workbook.Sheets.Sheet1);
-console.log(XLS.utils.make_json(workbook.Sheets.Sheet1).length);
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -37,20 +35,15 @@ app.use(session({
     saveUninitialized: false,
     cookie: {
         maxAge: 1000 * 60 * 60 * 24 * 1
-    },//TTL: one day
-    store: new MongoStore({
-        db: 'QR_Session'
-    })
+    }
 }));
 
 app.use('/', require('./routes/index'));
 app.use('/signin', require('./routes/signin'));
 app.use('/admin', require('./routes/admin'));
-app.use('/signup', require('./routes/signup'));
+app.use('/myFav', require('./routes/myFav'));
+app.use('/myReview', require('./routes/myReview'));
 app.use('/resource', require('./routes/resource'));
-app.use('/editProfile', require('./routes/editProfile'));
-app.use('/editPic', require('./routes/editPic'));
-
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

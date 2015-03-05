@@ -3,6 +3,7 @@ var router = express.Router();
 var Question = require('../models/Question');
 var config = require('../config');
 var Paper_index = require('../models/Paper_index');
+var User = require('../models/User');
 /* GET subject resource. */
 router.get('/admin_get_subject/:subject', function(req, res, next) {
   var subject = new Question(req.params.subject);
@@ -22,30 +23,14 @@ router.post('/add-paper/:subject', function(req, res, next) {
  * & objectId=(ExamPaperId)
  * url/get_paper_answer?subject=subject&object_id=object_id
  **/
-router.get('/get_paper_answer/', function(req, res, next) {
-  var paper_index = new Paper_index(req.query.subject);
-
-  // callback
-  /**
-  * AnswerSheet = { 0 : {
-                                        answer : answer,
-                                        comment : comment,
-                                        objectId : question_ObjectId
-                                     },
-  *                            1 : {
-                                        answer : answer,
-                                        comment : comment,
-                                        objectId : question_ObjectId
-                                     },
-  *                                                         .....}
-  **/
-  var getAnswers = function(AnswerSheet) {
-    console.log(AnswerSheet);
-    return AnswerSheet;
+router.post('/get_paper_answer', function(req, res, next) {
+  console.log(req.body);
+  var paper_index = new Paper_index(req.body.subject);
+  var getAnswersCallback = function(AnswerSheet) {
+    res.send(AnswerSheet);
   };
 
-  paper_index.getAnswers(req.query.objectId, getAnswers);
-
+  paper_index.getAnswers(req.body.objectId, getAnswersCallback);
 });
 
 /**
@@ -54,9 +39,9 @@ router.get('/get_paper_answer/', function(req, res, next) {
  * & objectId=(QuestionId)
  * url/add_question_comment?subject=subject&object_id=object_id
  **/
-router.get('/add_question_comment', function(req, res, next) {
-  var subject = new Question(req.query.subject);
-  subject.addComment(req.query.object_id);
+router.post('/add_question_comment', function(req, res, next) {
+  var subject = new Question(req.body.subject);
+  subject.addComment(req.body.objectId);
 });
 
 
@@ -66,9 +51,39 @@ router.get('/add_question_comment', function(req, res, next) {
  * & objectId=(QuestionId)
  * url/subtract_question_comment?subject=subject&object_id=object_id
  **/
-router.get('/subtract_question_comment', function(req, res, next) {
-  var subject = new Question(req.query.subject);
-  subject.subtractComment(req.query.object_id);
+router.post('/subtract_question_comment', function(req, res, next) {
+  var subject = new Question(req.body.subject);
+  subject.subtractComment(req.body.objectId);
+});
+
+router.post('/update_my_fav', function(req, res, next) {
+  var user = new User();
+  var userId = req.session.user.objectId,
+    quesIndex = req.body.quesIndex,
+    operation = req.body.operation;
+  var callback = function(target) {
+    req.session.user.myFav = target.get('myFav');
+    console.log(req.session.user);
+    res.send({
+      info: "success"
+    });
+  };
+  user.updateMyFav(userId, quesIndex, operation, callback);
+});
+
+router.post('/update_my_review', function(req, res, next) {
+  var user = new User();
+  var userId = req.session.user.objectId,
+    quesIndex = req.body.quesIndex,
+    operation = req.body.operation;
+  var callback = function(target) {
+    req.session.user.myReview = target.get('myReview');
+    console.log(req.session.user);
+    res.send({
+      info: "success"
+    });
+  };
+  user.updateMyReview(userId, quesIndex, operation, callback);
 });
 
 module.exports = router;
