@@ -2,6 +2,12 @@
   margin: 0;
   padding: 0;
 }
+.showing {
+  color: #26a69a !important;
+}
+.hidden {
+  display: none !important;
+}
 .left.side-nav {
   margin-left: 5px;
 }

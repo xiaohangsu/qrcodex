@@ -15,12 +15,22 @@ rest.post('http://localhost:3000/resource/get_paper_answer', {
   paper = data;
 });
 
+var inArray = function(obj, array) {
+  for (var i = 0; i < array.length; i++) {
+    if (obj == array[i]) {
+      return 1;
+    }
+  }
+  return 0;
+};
+
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', {
     title: '英语月考3',
     user: req.session.user,
     paper: paper,
+    inArray: inArray,
     success: req.flash('success').toString(),
     error: req.flash('error').toString()
   });
