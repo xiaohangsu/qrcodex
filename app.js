@@ -5,12 +5,9 @@ var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var session = require('express-session');
-var MongoStore = require('connect-mongo')(session);
 var flash = require('connect-flash');
 var app = express();
 var config = require('./config');
-var XLS = require("xlsjs");
-var workbook = XLS.readFile('student.xls');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));

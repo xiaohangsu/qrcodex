@@ -70,7 +70,7 @@ User.prototype = {
           if (operation == '+') {
             target.get('myReview').push(quesIndex);
           } else if (operation == '-') {
-            for (var i = 0; i < target.get('myFav').length; i++) {
+            for (var i = 0; i < target.get('myReview').length; i++) {
               if (target.get('myReview')[i] == quesIndex) {
                 target.get('myReview').splice(i, 1);
               }

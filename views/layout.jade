@@ -18,8 +18,11 @@ html
                 - if (paper)
                   - each type in paper.questions
                     li
-                      a(href='##{type.name}')
-                        p #{type.title}
+                      a(href='##{type.name}' data-name='#{type.name}')
+                        - if (type.name=='listening')
+                          p.showing #{type.title}
+                        - else
+                          p #{type.title}
                 - else if(user)
                   li
                     a(href='/')

@@ -1,6 +1,6 @@
 {
   "name": "qrcodex",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "private": true,
   "scripts": {
     "start": "node ./bin/www"
@@ -16,10 +16,7 @@
     "serve-favicon": "~2.2.0",
     "connect-flash": "latest",
     "express-session": "latest",
-    "connect-mongo": "latest",
-    "avoscloud-sdk":"latest",
-    "xlsx": "latest",
-    "xlsjs": "latest"
+    "avoscloud-sdk":"latest"
   },
   "devDependencies": {
     "grunt": "^0.4.5",
