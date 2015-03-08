@@ -1,6 +1,6 @@
 (function() {
   $('.collectBtn').click(function() {
-    var quesIndex = $(this).parent().parent().attr('ques_index');
+    var quesId = $(this).parent().parent().attr('ques_id');
     var status = $(this).parent().attr('status');
     if (status == 'logged_in') {
       var self = $(this);
@@ -9,7 +9,7 @@
           type: 'POST',
           url: '/resource/update_my_fav',
           data: {
-            quesIndex: quesIndex,
+            quesId: quesId,
             operation: '+'
           },
           success: function() {
@@ -22,7 +22,7 @@
           type: 'POST',
           url: '/resource/update_my_fav',
           data: {
-            quesIndex: quesIndex,
+            quesId: quesId,
             operation: '-'
           },
           success: function() {

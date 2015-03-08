@@ -1,8 +1,19 @@
 extends layout
 
 block content
-  ul.container
+  ul#my_review_page.container
     h5 我的点评
-    - each ques_index in user.myReview
-      div.card-panel.flow-text
-        li #{ques_index}
+    - each ques in myReviewJSON
+      li 
+        div.card-panel(ques_id=ques.objectId ques_index=ques.number)
+          div.flow-text
+            span #{ques.number}
+            span . 
+            span #{ques.answer}
+          div.divider
+          div.paperBtns(status='logged_in')
+            - if (inArray(ques.objectId, user.myFav) == 1)
+                a.btn.collectBtn.BtnActive 已收藏
+            - else
+                a.btn.collectBtn 收藏
+            a.btn.reviewBtn.BtnActive 点评(+1)

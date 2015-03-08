@@ -1,7 +1,7 @@
 (function() {
   $('.reviewBtn').click(function() {
-    var object_id = $(this).parent().parent().attr('ques_id'),
-      quesIndex = $(this).parent().parent().attr('ques_index');
+    var object_id = $(this).parent().parent().attr('ques_id');
+    var quesId = object_id;
     var status = $(this).parent().attr('status');
     if (status == 'logged_in') {
       var self = $(this);
@@ -18,7 +18,7 @@
           type: 'POST',
           url: '/resource/update_my_review',
           data: {
-            quesIndex: quesIndex,
+            quesId: quesId,
             operation: '+'
           },
           success: function() {
@@ -39,7 +39,7 @@
           type: 'POST',
           url: '/resource/update_my_review',
           data: {
-            quesIndex: quesIndex,
+            quesId: quesId,
             operation: '-'
           },
           success: function() {
