@@ -30,9 +30,9 @@ Paper_index.prototype = {
         var fetchCallbackJSON = {
           success: function(question) {
             answerSheet[question.get('number')] = {
-              answer : question.get('answer'),
-              comment : question.get('comment'),
-              object_id : question.id
+              answer: question.get('answer'),
+              comment: question.get('comment'),
+              object_id: question.id
             };
             if (this.currentPoint === this.QuestionNumber) {
               callback();
@@ -45,7 +45,14 @@ Paper_index.prototype = {
         this.currentPoint = 1;
         for (var i = 1; i <= this.QuestionNumber; i++) {
           // if not JSON error occur here
-          paper_index.get(i).fetch(fetchCallbackJSON);
+          paper_index.get(i).fetch({
+            success: function(question) {
+              if (currentPoint === QuestionNumber) {
+                fuck;
+              }
+              this.currentPoint++;
+            }
+          });
         }
 
 
