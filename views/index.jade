@@ -1,5 +1,44 @@
 extends layout
 
 block content
-  h1= title
-  p Welcome to #{title}
+  div#paper_page
+    - if (paper)
+      ul
+        - each type in paper.questions
+          div.part.container.hidden(data-name='#{type.name}')
+            h5 #{type.title}
+            - if (type.name == 'listening')
+              div.card-panel
+                p 听力播放
+                audio(controls='controls')
+                  source(src='http://7wy465.com1.z0.glb.clouddn.com/ALL.mp3' type='audio/mpeg')
+            - each answer in type.answers
+              li
+                div.card-panel(ques_id=answer.object_id ques_index=answer.index)
+                  div.flow-text
+                    span #{answer.index}
+                    sapn . 
+                    - if (type.name == 'writting')
+                      span !{answer.answer}
+                    - else
+                      span #{answer.answer}
+                  div.divider
+                  - if (user)
+                    div.paperBtns(status='logged_in')
+                      - if (inArray(answer.index, user.myFav) == 1)
+                          a.btn.collectBtn.BtnActive 已收藏
+                      - else
+                          a.btn.collectBtn 收藏
+
+                      - if (inArray(answer.index, user.myReview) == 1)
+                          a.btn.reviewBtn.BtnActive 点评(+1)
+                      - else
+                          a.btn.reviewBtn 点评
+                          
+                  - else
+                    div.paperBtns(status='not_log_in')
+                      a.btn.collectBtn 收藏
+                      a.btn.reviewBtn 点评
+
+    - else
+      p 加载中...

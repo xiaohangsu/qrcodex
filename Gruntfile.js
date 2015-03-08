@@ -50,14 +50,12 @@ module.exports = function(grunt) {
 		},
 		//设置express启动配置
 		express: {
-			options: {
-				port: 3000,
-				debug: true
-			},
-
 			server: {
 				options: {
-					script: 'bin/www'
+					port: 3000,
+					hostname: 'localhost',
+					script: 'bin/www',
+					livereload: true
 				}
 			}
 		},
@@ -66,25 +64,30 @@ module.exports = function(grunt) {
 			options: {
 				spawn: false
 			},
-
+			express: {
+				files: ['routes/*.js', 'models/**/**'],
+				tasks: ['express']
+			},
+			jade: {
+				files: ['views/*.jade'],
+				options: {
+					livereload: true
+				}
+			},
 			stylesheets: {
-				files: ['public/stylesheets/**/*.less'],
-				tasks: ['less']
+				files: ['public/stylesheets/*.less'],
+				tasks: ['less'],
+				options: {
+					livereload: true
+				}
 			},
 			//前端js
 			javascripts_frontend: {
-				files: ['public/javascripts/**/*'],
-				tasks: ['jshint:beforeConcat', 'concat', 'jshint:afterConcat', 'express']
-			},
-			//服务器js
-			javascripts_server: {
-				files: ['**/*.js', '!public/**/*'],
-				tasks: ['express']
-			},
-
-			jade: {
-				files: ['views/**/*.jade'],
-				tasks: ['express']
+				files: ['public/javascripts/*.js'],
+				tasks: ['jshint:beforeConcat', 'concat', 'jshint:afterConcat'],
+				options: {
+					livereload: true
+				}
 			}
 		}
 	});

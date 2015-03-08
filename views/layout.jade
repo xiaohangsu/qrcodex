@@ -8,52 +8,61 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     .navbar-fixed
-      nav
+      nav.teal.ligthen-5
         .nav-wrapper
           .col.s12
             .left.side-nav
-              i.small.mdi-action-list
+              a.left.side-nav.button-collapse#paperCollapse(data-activates='paperNav')
+                i.small.mdi-action-list
+              ul.side-nav.full.grey.darken-3#paperNav
+                - if (paper)
+                  - each type in paper.questions
+                    li
+                      a(href='##{type.name}' data-name='#{type.name}')
+                        - if (type.name=='listening')
+                          p.showing #{type.title}
+                        - else
+                          p #{type.title}
+                - else if(user)
+                  li
+                    a(href='/')
+                      p 返回首页
+                - else
+                  li
+                    a(href='!#') 
+                      p 加载中...
+
             span#layout_title #{title}
             - if (user)
-              a.right.side-nav.button-collapse(data-activates='userInfo')
+              a.right.side-nav.button-collapse.userCollapse(data-activates='userInfo')
                 i.small.mdi-action-perm-identity
               ul.side-nav.full.grey.darken-3#userInfo
                 li
-                  a(href='/editPic')
-                    div#userImg
-                      img(src=user.myPic)
-                li
                   i.small.mdi-social-person
-                  a(href='/editProfile')#userName #{user.username}
-                li
-                  i.small.mdi-hardware-phone-android
-                  a(href='/editProfile')#userPhone #{user.phoneNumber}
+                  a #{user.username}
                 li
                   i.small.mdi-notification-folder-special
                   a(href='/myFav')#userFav 我的收藏
                 li
                   i.small.mdi-action-info
-                  a(href='/about')#aboutUs 关于我们
+                  a(href='/myReview')#aboutUs 我的点评
                 li
                   i.small.mdi-action-exit-to-app
                   a(href='/logout')#logout 退出登陆
             - else
-              a.right.side-nav.button-collapse(data-activates='userSignup')
+              a.right.side-nav.button-collapse.userCollapse(data-activates='userSignup')
                 i.small.mdi-action-perm-identity
               ul.side-nav.full.grey.darken-3#userSignup
-                li
-                  i.small.mdi-social-person
-                  a(href='/signin')
-                    p#signIn 登陆
-                
-                li
-                  i.small.mdi-social-person-add
-                  a(href='/signup')
-                    p#signUp 注册
-                li
-                  i.small.mdi-action-info
-                  a(href='/about')
-                    p#aboutUs 关于我们
+                form#signin_form(method='post' action='/signin')
+                  div.input-field
+                    i.small.mdi-social-person.prefix
+                    input(type='text' name='signin_username' placeholder='用户名')
+                  div.input-field
+                    i.small.mdi-action-lock.prefix
+                    input(type='text' name='signin_password' placeholder='密码(初始为学号)')
+                  div#signin_btn
+                    button(type='submit')#signin_btn.btn.waves-effect.waves-light 登陆
+
             
     div.flash_tips
       - if(success)

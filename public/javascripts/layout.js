@@ -1,6 +1,9 @@
 (function() {
+  $('#paperCollapse').sideNav({
+    edge: 'left'
+  });
   //右侧栏弹出用户菜单
-  $('.button-collapse').sideNav({
+  $('.userCollapse').sideNav({
     edge: 'right'
   });
 
