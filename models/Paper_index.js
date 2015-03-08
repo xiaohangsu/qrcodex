@@ -30,13 +30,10 @@ Paper_index.prototype = {
         //using JSON avoid JShint error : Don't make functions within a loop.
         var fetchCallbackJSON = {
           success: function(question) {
-<<<<<<< HEAD
-            answerSheet[question.get('number')] = {
-=======
+
             var ques = {
               type: question.get('type'),
               index: question.get('number'),
->>>>>>> 3bf6955b25b44d834134e9447125650556d0a582
               answer: question.get('answer'),
               comment: question.get('comment'),
               object_id: question.id
