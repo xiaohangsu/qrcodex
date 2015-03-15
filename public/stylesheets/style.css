@@ -68,6 +68,22 @@
   -webkit-transform: translate(0px, -40px);
 }
 
+#my_fav_page .card-panel a {
+  margin-top: 10px;
+  margin-right: 5px;
+  background-color: white;
+  color: black;
+  padding: 0px 1rem;
+}
+
+#my_review_page .card-panel a {
+  margin-top: 10px;
+  margin-right: 5px;
+  background-color: white;
+  color: black;
+  padding: 0px 1rem;
+}
+
 .card-panel {
   padding: 1rem;
   z-index: 0;
@@ -92,6 +108,13 @@
 }
 .paperBtns {
   border-top: 1px solid grey;
+}
+.listening-card audio {
+  width: 100%;
+}
+.listening-card {
+  border-top: 1px solid grey;
+  padding-top: 10px;
 }
 
 #signin_form {

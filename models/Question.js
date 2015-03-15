@@ -102,14 +102,14 @@ Question.prototype = {
    * query By Object Id
    *
    **/
-  queryByObjectId: function(ObjectId) {
+  queryByObjectId: function(ObjectId, callback) {
     var question = new this.Question();
 
     var query = new AV.Query(this.Question);
     query.equalTo('objectId', ObjectId);
     query.find({
       success: function(result) {
-        return result;
+        callback(result);
       },
       error: function(error) {
         this.error = error.description;

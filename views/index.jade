@@ -9,9 +9,12 @@ block content
             h5 #{type.title}
             - if (type.name == 'listening')
               div.card-panel
-                p 听力播放
-                audio(controls='controls')
-                  source(src='http://7wy465.com1.z0.glb.clouddn.com/ALL.mp3' type='audio/mpeg')
+                div.flow-text
+                  p 听力播放
+                div.divider
+                div.listening-card
+                  audio(controls)
+                    source(src='http://7wy465.com1.z0.glb.clouddn.com/ALL.mp3' type='audio/mpeg')
             - each answer in type.answers
               li
                 div.card-panel(ques_id=answer.object_id ques_index=answer.index)
@@ -25,12 +28,12 @@ block content
                   div.divider
                   - if (user)
                     div.paperBtns(status='logged_in')
-                      - if (inArray(answer.index, user.myFav) == 1)
+                      - if (inArray(answer.object_id, user.myFav) == 1)
                           a.btn.collectBtn.BtnActive 已收藏
                       - else
                           a.btn.collectBtn 收藏
 
-                      - if (inArray(answer.index, user.myReview) == 1)
+                      - if (inArray(answer.object_id, user.myReview) == 1)
                           a.btn.reviewBtn.BtnActive 点评(+1)
                       - else
                           a.btn.reviewBtn 点评

@@ -56,10 +56,18 @@ router.post('/subtract_question_comment', function(req, res, next) {
   subject.subtractComment(req.body.objectId);
 });
 
+router.post('/queryByObjectId', function(req, res, next) {
+  var subject = new Question(req.body.subject);
+  var callback = function(target) {
+    res.send(target);
+  };
+  subject.queryByObjectId(req.body.objectId, callback);
+});
+
 router.post('/update_my_fav', function(req, res, next) {
   var user = new User();
   var userId = req.session.user.objectId,
-    quesIndex = req.body.quesIndex,
+    quesId = req.body.quesId,
     operation = req.body.operation;
   var callback = function(target) {
     req.session.user.myFav = target.get('myFav');
@@ -68,13 +76,13 @@ router.post('/update_my_fav', function(req, res, next) {
       info: "success"
     });
   };
-  user.updateMyFav(userId, quesIndex, operation, callback);
+  user.updateMyFav(userId, quesId, operation, callback);
 });
 
 router.post('/update_my_review', function(req, res, next) {
   var user = new User();
   var userId = req.session.user.objectId,
-    quesIndex = req.body.quesIndex,
+    quesId = req.body.quesId,
     operation = req.body.operation;
   var callback = function(target) {
     req.session.user.myReview = target.get('myReview');
@@ -83,7 +91,7 @@ router.post('/update_my_review', function(req, res, next) {
       info: "success"
     });
   };
-  user.updateMyReview(userId, quesIndex, operation, callback);
+  user.updateMyReview(userId, quesId, operation, callback);
 });
 
 module.exports = router;
