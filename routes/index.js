@@ -12,6 +12,7 @@ rest.post('http://localhost:3000/resource/get_paper_answer', {
   console.log('=============');
   console.log('POST_COMELETE');
   console.log('=============');
+  console.log(data);
   paper = data;
 });
 

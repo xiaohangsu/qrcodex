@@ -4,17 +4,17 @@ html
     title QRCODEX | #{title}
     meta(charset="utf-8")
     meta(name="viewport", content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no")
-    link(rel='stylesheet', href='/lib/materialize/css/materialize.min.css')
+    link(rel='stylesheet', href='/lib/materialize/css/materialize.css')
     link(rel='stylesheet', href='/stylesheets/style.css')
   body
     .navbar-fixed
       nav.teal.ligthen-5
         .nav-wrapper
-          .col.s12
-            .left.side-nav
-              a.left.side-nav.button-collapse#paperCollapse(data-activates='paperNav')
-                i.small.mdi-action-list
-              ul.side-nav.full.grey.darken-3#paperNav
+          span.brand-logo.center#layout_title #{title}
+          ul.left
+            a.left.side-nav.button-collapse#paperCollapse(data-activates='paperNav')
+              i.small.mdi-action-list
+            ul.side-nav.full.grey.darken-3#paperNav
                 - if (paper)
                   - each type in paper.questions
                     li
@@ -31,12 +31,11 @@ html
                   li
                     a(href='!#') 
                       p 加载中...
-
-            span#layout_title #{title}
-            - if (user)
-              a.right.side-nav.button-collapse.userCollapse(data-activates='userInfo')
-                i.small.mdi-action-perm-identity
-              ul.side-nav.full.grey.darken-3#userInfo
+          ul.right
+          - if (user)
+            a.right.side-nav.button-collapse.userCollapse(data-activates='userInfo')
+              i.small.mdi-action-perm-identity
+            ul.side-nav.full.grey.darken-3#userInfo
                 li
                   i.small.mdi-social-person
                   a #{user.username}
@@ -49,10 +48,10 @@ html
                 li
                   i.small.mdi-action-exit-to-app
                   a(href='/logout')#logout 退出登陆
-            - else
-              a.right.side-nav.button-collapse.userCollapse(data-activates='userSignup')
-                i.small.mdi-action-perm-identity
-              ul.side-nav.full.grey.darken-3#userSignup
+          - else
+            a.right.side-nav.button-collapse.userCollapse(data-activates='userSignup')
+              i.small.mdi-action-perm-identity
+            ul.side-nav.full.grey.darken-3#userSignup
                 form#signin_form(method='post' action='/signin')
                   div.input-field
                     i.small.mdi-social-person.prefix

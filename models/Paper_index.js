@@ -30,7 +30,6 @@ Paper_index.prototype = {
         //using JSON avoid JShint error : Don't make functions within a loop.
         var fetchCallbackJSON = {
           success: function(question) {
-
             var ques = {
               type: question.get('type'),
               index: question.get('number'),
@@ -127,14 +126,7 @@ Paper_index.prototype = {
         this.currentPoint = 1;
         for (var i = 1; i <= this.QuestionNumber; i++) {
           // if not JSON error occur here
-          paper_index.get(i).fetch({
-            success: function(question) {
-              if (currentPoint === QuestionNumber) {
-                fuck;
-              }
-              this.currentPoint++;
-            }
-          });
+          paper_index.get(i).fetch(fetchCallbackJSON);
         }
       },
       error: function(object, error) {

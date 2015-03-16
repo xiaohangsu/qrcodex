@@ -43,6 +43,7 @@ router.get('/', function(req, res, next) {
             return -1;
           }
         });
+        console.log(myFavJSON);
         res.render('myFav', {
           title: '我的收藏',
           user: req.session.user,
