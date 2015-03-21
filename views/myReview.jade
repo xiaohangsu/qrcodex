@@ -5,7 +5,7 @@ block content
     h5 我的点评
     - each ques in myReviewJSON
       li 
-        div.card-panel(ques_id=ques.objectId ques_index=ques.number)
+        div.card-panel(ques_id=ques.objectId ques_index=ques.number id='#{ques.objectId}')
           div.flow-text
             span #{ques.number}
             span . 

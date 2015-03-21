@@ -23,7 +23,29 @@ html
                           p.showing #{type.title}
                         - else
                           p #{type.title}
-                - else if(user)
+                - else if(myFavJSON)
+                  - var tempName = ''
+                  - each json in myFavJSON
+                    - if (tempName == json.type)
+                      - continue
+                    - else
+                      li
+                        a(href='##{json.objectId}' data-name='#{json.objectId}' class='favReviewPiont')
+                          p #{json.type}
+                      - tempName = json.type
+                  li
+                    a(href='/')
+                      p 返回首页
+                - else if(myReviewJSON)
+                  - var tempName = ''
+                  - each json in myReviewJSON
+                    - if (tempName == json.type)
+                      - continue
+                    - else
+                      li
+                        a(href='##{json.objectId}' data-name='#{json.objectId}' class='favReviewPiont')
+                          p #{json.type}
+                      - tempName = json.type
                   li
                     a(href='/')
                       p 返回首页

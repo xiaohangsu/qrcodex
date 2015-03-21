@@ -27,6 +27,10 @@
       $('.flash_tips').removeClass().addClass('flash_tips_animate');
     });
   }
+
+  $(".favReviewPiont").click(function(){
+    $("html,body").animate({scrollTop:$('#' + this.getAttribute('data-name')).offset().top},1000);
+  });
 })();;(function() {
   $('.collectBtn').click(function() {
     var quesId = $(this).parent().parent().attr('ques_id');
@@ -66,6 +70,8 @@
       return;
     }
   });
+
+  
 })();;(function() {
   $('.reviewBtn').click(function() {
     var object_id = $(this).parent().parent().attr('ques_id');
